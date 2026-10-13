@@ -1,0 +1,940 @@
+app:
+  description: '一个基于AI的智能旅游规划助手，
+
+    根据用户目的地、时间、预算生成完整旅游攻略。'
+  icon: bellhop_bell
+  icon_background: '#FFE4E8'
+  icon_type: emoji
+  mode: workflow
+  name: AI Travel Planner
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.2.22@9cea96ffc7977f536c02999c80ff1283b1819aab9b6fa2fdf789d0c6c7d03715
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1786070537494-source-1786071452838-target
+      source: '1786070537494'
+      sourceHandle: source
+      target: '1786071452838'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1786071452838-source-1786071906603-target
+      source: '1786071452838'
+      sourceHandle: source
+      target: '1786071906603'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1786071906603-source-1786072266480-target
+      source: '1786071906603'
+      sourceHandle: source
+      target: '1786072266480'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1786072266480-source-1786072484223-target
+      source: '1786072266480'
+      sourceHandle: source
+      target: '1786072484223'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1786072484223-source-1786072708312-target
+      source: '1786072484223'
+      sourceHandle: source
+      target: '1786072708312'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1786083733872-source-1786084602945-target
+      source: '1786083733872'
+      sourceHandle: source
+      target: '1786084602945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1786084602945-source-1786085216825-target
+      source: '1786084602945'
+      sourceHandle: source
+      target: '1786085216825'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1786072708312-source-1791823137412-target
+      source: '1786072708312'
+      sourceHandle: source
+      target: '1791823137412'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: http-request
+      id: 1791823137412-source-1786083733872-target
+      source: '1791823137412'
+      sourceHandle: source
+      target: '1786083733872'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: 用户旅游需求
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: user_input
+      height: 108
+      id: '1786070537494'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params: {}
+          mode: chat
+          name: kimi-k2.5
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: a86b7d94-2e25-46a7-96f3-ef5f98287275
+          role: system
+          text: "你是一名专业旅游需求分析师。请分析用户的旅行需求，并严格按指定的 JSON 格式输出，不要输出任何额外的解释或对话。\n\n字段定义：\n\
+            - destination: 旅游目的地城市（例如：\"广东汕头\"）\n- days: 旅游天数（纯数字，例如：3）\n- people:\
+            \ 出行人数（未提供则填 null）\n- budget: 预算金额（未提供则填 null）\n- transport: 交通方式（例如：\"\
+            自驾\"、\"公共交通\"，未提供则填 null）\n- style: 旅行偏好（例如：\"美食\"、\"休闲\"，未提供则填 \"常规\"\
+            ）\n\n输出格式示例：\n{\n  \"destination\": \"广东汕头\",\n  \"days\": 3,\n  \"people\"\
+            : null,\n  \"budget\": null,\n  \"transport\": null,\n  \"style\": \"\
+            常规\"\n}\n\n用户需求：\n{{#1786070537494.user_input#}}"
+        selected: false
+        structured_output:
+          schema:
+            properties:
+              budget:
+                description: 旅游预算
+                type: string
+              days:
+                description: 旅游天数
+                type: string
+              destination:
+                description: 旅游目的地
+                type: string
+              people:
+                description: 出行人数
+                type: string
+              style:
+                description: 旅游风格
+                type: string
+              transport:
+                description: 交通方式
+                type: string
+            required:
+            - destination
+            - days
+            - people
+            - budget
+            - transport
+            - style
+            type: object
+        structured_output_enabled: true
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1786071452838'
+      position:
+        x: 228.4864450772236
+        y: 482.28721618830986
+      positionAbsolute:
+        x: 228.4864450772236
+        y: 482.28721618830986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen3.8-flash
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 3a3934db-0802-40b9-9695-025ff9740901
+          role: system
+          text: '你是一名资深旅行规划师。
+
+
+            请根据以下信息生成完整旅游攻略。
+
+
+            目的地：
+
+            {{旅游需求分析.structured_output.destination}}
+
+
+            旅游天数：
+
+            {{旅游需求分析.structured_output.days}}
+
+
+            人数：
+
+            {{旅游需求分析.structured_output.people}}
+
+
+            预算：
+
+            {{旅游需求分析.structured_output.budget}}
+
+
+            交通方式：
+
+            {{旅游需求分析.structured_output.transport}}
+
+
+            旅行类型：
+
+            {{旅游需求分析.structured_output.style}}
+
+
+            要求：
+
+
+            1. 按天规划行程
+
+            2. 每天分上午、下午、晚上
+
+            3. 每个景点写推荐理由
+
+            4. 推荐交通方式
+
+            5. 推荐酒店入住区域（不用具体酒店）
+
+            6. 控制预算
+
+            7. 最后输出旅行建议
+
+            8. 每天景点安排必须考虑地理位置接近
+
+            9. 减少重复路线
+
+            10. 优先安排热门景点
+
+            11. 标注每天预计交通时间
+
+            12. 标注每天预计花费
+
+
+            请使用 Markdown 格式输出。'
+        selected: false
+        title: 旅游规划Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1786071906603'
+      position:
+        x: 533.4896365473936
+        y: 295.1925711261761
+      positionAbsolute:
+        x: 533.4896365473936
+        y: 295.1925711261761
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.8-max
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 0541f9a8-ba18-48f3-92e7-033c07f58e72
+          role: system
+          text: '你是一名专业酒店顾问。
+
+
+            根据用户旅行需求，推荐适合入住的酒店方案。
+
+
+
+            用户信息：
+
+
+            目的地：
+
+            {{旅游需求分析.structured_output.destination}}
+
+
+            旅游天数：
+
+            {{旅游需求分析.structured_output.days}}
+
+
+            人数：
+
+            {{旅游需求分析.structured_output.people}}
+
+
+            预算：
+
+            {{旅游需求分析.structured_output.budget}}
+
+
+            旅行类型：
+
+            {{旅游需求分析.structured_output.style}}
+
+
+
+            请输出：
+
+
+            1. 推荐入住区域
+
+
+            2. 推荐3-5家酒店
+
+
+            每个酒店包含：
+
+
+            酒店名称：
+
+            价格范围：
+
+            酒店图片关键词：
+
+            距离热门景点：
+
+            附近交通：
+
+            推荐理由：
+
+
+
+            要求：
+
+
+            - 根据预算推荐
+
+            - 优先考虑交通便利
+
+            - 适合用户旅行类型
+
+            - 使用Markdown格式
+
+
+            注意：
+
+
+            如果无法确认真实酒店信息，
+
+            请明确标注“示例推荐”，
+
+            不要编造不存在的酒店。'
+        selected: false
+        title: 酒店推荐Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1786072266480'
+      position:
+        x: 533.4896365473936
+        y: 471.4932943578022
+      positionAbsolute:
+        x: 533.4896365473936
+        y: 471.4932943578022
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-5
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 37bfc3ca-cf42-43d4-a3da-1ef79b0bc90b
+          role: system
+          text: '你是一名专业旅行美食顾问。
+
+
+
+            根据用户旅行信息，推荐当地特色美食。
+
+
+
+            用户信息：
+
+
+            目的地：
+
+
+            {{旅游需求分析.structured_output.destination}}
+
+
+
+            旅游天数：
+
+
+            {{旅游需求分析.structured_output.days}}
+
+
+
+            人数：
+
+
+            {{旅游需求分析.structured_output.people}}
+
+
+
+            预算：
+
+
+            {{旅游需求分析.structured_output.budget}}
+
+
+
+            旅行类型：
+
+
+            {{旅游需求分析.structured_output.style}}
+
+
+
+
+            请输出：
+
+
+
+            1. 当地必吃美食
+
+
+            包含：
+
+
+            美食名称：
+
+
+            推荐理由：
+
+
+            适合时间：
+
+
+            人均价格：
+
+
+            推荐区域：
+
+
+
+            2. 推荐餐厅3-5家
+
+
+            每家包含：
+
+
+            餐厅名称：
+
+
+            特色菜：
+
+
+            价格范围：
+
+
+            位置：
+
+
+            推荐理由：
+
+
+
+            3. 给出每日吃饭建议
+
+
+
+            要求：
+
+
+            - 符合用户预算
+
+            - 优先推荐当地特色
+
+            - 使用Markdown格式'
+        selected: false
+        title: 美食推荐Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1786072484223'
+      position:
+        x: 533.4896365473936
+        y: 639.3987450545889
+      positionAbsolute:
+        x: 533.4896365473936
+        y: 639.3987450545889
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.8-max
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: af9d254c-21eb-43de-92b6-b81cf086514b
+          role: system
+          text: '你是一名专业旅游交通规划师。
+
+
+
+            根据用户旅行需求，
+
+            设计每天最合理的交通方案。
+
+
+
+            用户信息：
+
+
+            目的地：
+
+
+            {{旅游需求分析.structured_output.destination}}
+
+
+
+            旅游天数：
+
+
+            {{旅游需求分析.structured_output.days}}
+
+
+
+            人数：
+
+
+            {{旅游需求分析.structured_output.people}}
+
+
+
+            交通偏好：
+
+
+            {{旅游需求分析.structured_output.transport}}
+
+
+
+            旅行类型：
+
+
+            {{旅游需求分析.structured_output.style}}
+
+
+
+
+            请输出：
+
+
+
+            ## 1. 每日交通路线
+
+
+            Day1:
+
+
+            出发地点：
+
+
+            目的地：
+
+
+            交通方式：
+
+
+            线路：
+
+
+            预计时间：
+
+
+            预计费用：
+
+
+
+            Day2:
+
+
+            ...
+
+
+
+            ## 2. 交通建议
+
+
+            包含：
+
+
+            - 推荐交通卡
+
+            - 地铁使用方法
+
+            - 打车建议
+
+            - 注意事项
+
+
+
+            要求：
+
+
+            1. 路线必须符合地理位置逻辑
+
+            2. 减少往返
+
+            3. 优先公共交通
+
+            4. 使用Markdown格式
+
+            5. 如果无法确认具体线路，请标注“建议查询实时地图”'
+        selected: false
+        title: 交通规划Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1786072708312'
+      position:
+        x: 533.4896365473936
+        y: 802.5068971600388
+      positionAbsolute:
+        x: 533.4896365473936
+        y: 802.5068971600388
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: ''
+          type: none
+        headers: ''
+        method: get
+        params: 'key:8ad6eb423dae806beb2518aea0249d08
+
+          origin:{{#1791823137412.origin#}}
+
+          destination:{{#1791823137412.destination#}}'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: https://restapi.amap.com/v3/direction/driving
+        variables: []
+      height: 136
+      id: '1786083733872'
+      position:
+        x: 829.1954031250282
+        y: 584.2298112542161
+      positionAbsolute:
+        x: 829.1954031250282
+        y: 584.2298112542161
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-5
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 9857553e-d9e8-473e-a111-3094ee62f290
+          role: system
+          text: '你是一位资深的旅行杂志总编辑。请将前方各个向导提供的零散信息进行统稿整合，为用户输出一份排版精美、逻辑清晰、语气热情的最终旅行路书。
+
+            【前方传回的素材】：
+
+            旅游整体规划：{{#1786071906603.text#}}
+
+            酒店住宿推荐：{{#1786072266480.text#}}
+
+            特色美食推荐：{{#1786072484223.text#}}
+
+            交通路线规划：{{#1786072708312.text#}}
+
+            高德地图真实路线数据：{{#1786083733872.body#}}
+
+            【输出要求】：
+
+            不要生硬拼接，请把美食和酒店自然地融入到每天的行程路线中。
+
+            参考高德地图的真实数据（如距离、时间等）让交通指引更准确。
+
+            大量使用 Markdown 排版（如大标题、加粗、列表）和 Emoji 表情，让路书赏心悦目。'
+        selected: false
+        title: 总编辑 Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1786084602945'
+      position:
+        x: 1111.193820099985
+        y: 409.1284126704242
+      positionAbsolute:
+        x: 1111.193820099985
+        y: 409.1284126704242
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1786084602945'
+          - text
+          value_type: string
+          variable: result
+        selected: false
+        title: 输出
+        type: end
+      height: 87
+      id: '1786085216825'
+      position:
+        x: 1195.783428118379
+        y: 626.0085528525273
+      positionAbsolute:
+        x: 1195.783428118379
+        y: 626.0085528525273
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.8-max
+          provider: langgenius/tongyi/tongyi
+        parameters:
+        - description: 自驾出发地的经纬度坐标
+          name: origin
+          required: false
+          type: string
+        - description: 自驾目的地的经纬度
+          name: destination
+          required: false
+          type: string
+        query:
+        - '1786072708312'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1791823137412'
+      position:
+        x: 829.1954031250282
+        y: 409.1284126704242
+      positionAbsolute:
+        x: 829.1954031250282
+        y: 409.1284126704242
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: -20.23563261475124
+      y: -139.24296273687287
+      zoom: 1.0000000979313692
+  rag_pipeline_variables: []
