@@ -47,7 +47,7 @@
 
 ## 五、工作流截图
 
-![Dify AI 旅游规划助手工作流](workflow(2).png)
+![Dify AI 旅游规划助手工作流](workflow.png)
 
 ## 六、如何导入和运行
 
